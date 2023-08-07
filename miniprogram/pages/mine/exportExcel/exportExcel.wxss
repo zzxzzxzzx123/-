@@ -1,0 +1,18 @@
+.text{
+  text-align: center;
+  font-size: 25rpx;
+  color: rgb(126, 126, 126);
+}
+.maxview{
+  background-color: #fff;
+}
+.charts-box {
+  width: 100%;
+  height: 300px;
+}
+.title{
+  text-align: center;
+  font-size: 35rpx;
+  font-weight: bold;
+  /* margin: 20rpx; */
+}

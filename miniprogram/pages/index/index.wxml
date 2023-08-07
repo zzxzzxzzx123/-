@@ -1,0 +1,87 @@
+<wxs src="../../utils/common.wxs" module="morejs" />
+<view id="maxView">
+<image src="https://677a-gzzw-1g7ti6il9d8c706e-1319528067.tcb.qcloud.la/img/%E5%8D%93%E4%B8%BAlogo.jpg?sign=b9067c3789adae8c419f5f2096c5f500&t=1689821129" class="topimage"></image>
+ <!-- <image src="https://s1.ax1x.com/2022/03/15/bvUvM4.gif" class="topimage"></image>   -->
+ 
+  <view class="addOrdersBtn" bindtap="toPublish">
+    <image src="/images/report.png" class="addlogo"></image>
+    发起汇总表
+  </view>
+
+  <view class="orderData">
+    <view class="center">
+      <view class="mySendOrder" bindtap="toMyRepair">
+        <image src="/images/mysendorders.png"></image>
+        <span>我的汇总表</span>
+      </view>
+      <view class="myOrderOver" bindtap="toOverList">
+        <image src="/images/ordersover.png"></image>
+        <span>已完成汇总表记录</span>
+      </view>
+      <view class="adminShowOrder" bindtap="toAdmin">
+        <image src="/images/adminshowordeer.png"></image>
+        <span>待我处理</span>
+      </view>
+    </view>
+  </view>
+
+  <view class="orderslist">
+    <view class="cu-bar bg-white">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        <text class="text-xl text-bold">我的未处理汇总表（{{applyData.length}}条记录）</text>
+      </view>
+    </view>
+    <!-- <view class="orderlist_title">最近未处理汇总表</view> -->
+    <view style="background-color: #fff;">
+      <block wx:for="{{applyData}}" wx:key="applyData">
+        <view class="card-item">
+          <view class="item-content border-bottom">
+            <view class="left-box">
+              <image src="{{item.userlogo}}" mode="aspectFill"></image>
+            </view>
+            <view class="right-box">
+              <view class="floor">{{item.name}}的申报
+                <view class="level-tag" style="background-color: {{ item.level === '普通申报' ? '#07c160' : '#ee0a24'}}">{{item.level}}</view>
+              </view>
+              <text class="date">{{item.createTime}}</text>
+              <text class="desc">{{item.desc}}</text>
+              <!-- <van-tag class="flag" color="{{item.status === '未处理' ? '#ff976a' : '#07c160'}}">{{item.status}}</van-tag> -->
+              <view class=" margin-left grid col-4 grid-square flex-sub">
+                <view class="bg-img" wx:for="{{item.imgs}}" wx:key="index">
+                  <image src='{{item}}' data-target="Image" catchtap="showModal" data-url='{{img[index]}}' mode='aspectFill'>
+                  </image>
+                </view>
+              </view>
+
+              <view class="item-footer">
+                <!-- <text data-id="{{item._id}}" bindtap="deleteMeSend"  style="border: 1px solid red;padding:5rpx 10rpx 5rpx 10rpx;border-radius: 15rpx;color:red;">取消汇总表</text> -->
+                <!-- <image src="/images/deleteicon.png" style="width: 20px; height: 20px;" data-id="{{item._id}}" bindtap="deleteMeSend" ></image> -->
+                <text data-id="{{item._id}}" bindtap="navDetail" style="border: 1px solid #1989FA;padding:5rpx 10rpx 5rpx 10rpx;border-radius: 15rpx;">查看详情</text>
+              </view>
+            </view>
+          </view>
+          <!-- <view class="level-tag" style="background-color: {{ item.level === '普通申报' ? '#07c160' : '#ee0a24'}}">
+						{{item.level}}</view> -->
+        </view>
+
+      </block>
+    </view>
+  </view>
+
+  <!-- 悬浮客服按钮 -->
+<!--  <view class="fenxiang">
+    <button class="button-row" id="ContactusBtn" bindtap="ContactusBtn" type="primary" class="contactusBtn">
+      <image src="/images/ContactusBtn.png" style="margin:15rpx -20rpx;"></image>
+    </button>
+  </view> -->
+
+  <view>
+    <view class="panel-center item-center ma-t30" style='padding:30rpx;padding-top:0 '>
+      <view class='fg1'></view>
+      <view class='fg2'>我是有底线的哦</view>
+      <view class='fg1'></view>
+    </view>
+  </view>
+
+</view>

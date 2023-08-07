@@ -1,0 +1,103 @@
+<view class="topImage">
+  <view wx:if="{{data.status == '未处理'}}">
+    <image src="/images/dingdanerror.png"></image>
+  </view>
+  <view wx:if="{{data.status == '处理中'}}">
+    <image src="/images/dingdanload.png"></image>
+  </view>
+  <view wx:if="{{data.status == '已处理'}}">
+    <image src="/images/dingdansucces.png"></image>
+  </view>
+
+
+  <view class="topImageUpTitle">
+    <view wx:if="{{data.status == '未处理'}}">
+      <image src="/images/cuo.png"></image>
+      <text>汇总表正在处理</text>
+    </view>
+    <view wx:if="{{data.status == '处理中'}}">
+      <image src="/images/load.png"></image>
+      <text>汇总表正在处理，请耐心等待</text>
+    </view>
+    <view wx:if="{{data.status == '已处理'}}">
+      <image src="/images/dui.png"></image>
+      <text>汇总表已处理完毕</text>
+    </view>
+  </view>
+</view>
+
+<view class="orderView">
+  <view class="apply-table">
+    <view class="title-img"></view>
+    <view class='apply-title'>汇总表详情</view>
+    <view class="apply-item">
+      <view>
+        <text class="apply-item-title">处理级别：</text>
+        <text class="apply-item-data">{{data.level}}</text>
+      </view>
+      <view>
+        <text class="apply-item-title">处理状态：</text>
+        <text class="apply-item-data">{{data.status}}</text>
+      </view>
+      <view>
+        <text class="apply-item-title">提交日期：</text>
+        <text class="apply-item-data">{{data.createTime}}</text>
+      </view>
+      <view>
+        <text class="apply-item-title">详细描述：</text>
+        <text class="apply-item-data">{{data.desc}}</text>
+      </view>
+      <view style="height: 180rpx;">
+        <text class="apply-item-title">相关文档图片(点击放大预览)：</text>
+        <view class=" margin-left grid col-4 grid-square flex-sub" >
+          <view class="bg-img" wx:for="{{data.imgs}}" wx:for-index="bindex" wx:key="index" >
+            <image src='{{item}}' data-target="Image" catchtap="showImage" data-bindex='{{bindex}}' data-url='{{img[index]}}' mode='aspectFill'>
+            </image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="apply-table">
+    <view class="title-img"></view>
+    <view class='apply-title'>申报人</view>
+    <view class="apply-item">
+      <view>
+        <text class="apply-item-title">姓名：</text>
+        <text class="apply-item-data">{{data.name}}</text>
+      </view>
+      <view wx:if="{{inorderopenid == thisopenid || admin}}">
+        <view>
+          <text class="apply-item-title">联系电话：</text>
+          <text class="apply-item-data" style="color: rgb(0, 81, 255);" data-phone="{{data.phone}}" bindtap="callApplyPhone">{{data.phone}}</text>
+        </view>
+        <view>
+          <text class="apply-item-title">邮箱地址：</text>
+          <text class="apply-item-data" style="color: rgb(0, 81, 255);">{{data.email}}</text>
+        </view>
+        <view>
+          <text class="apply-item-title">联系地址：</text>
+          <text class="apply-item-data" style="color: rgb(0, 81, 255);">{{data.address}}</text>
+        </view>
+      </view>
+      <view wx:else>
+        <view>
+          <text class="apply-item-title">联系电话：</text>
+          <text class="apply-item-data" bindtap="hiring">管理员点击可见</text>
+        </view>
+        <view>
+          <text class="apply-item-title">邮箱地址：</text>
+          <text class="apply-item-data" bindtap="hiring">管理员点击可见</text>
+        </view>
+        <view>
+          <text class="apply-item-title">联系地点：</text>
+          <text class="apply-item-data" bindtap="hiring">管理员点击可见</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{(inorderopenid == thisopenid) || admin}}">
+    <button class="updateBtn" bindtap="updateOrder" data-id="{{data._id}}" wx:if="{{data.status == '未处理'}}">修改汇总表</button>
+    <button class="deleteBtn" bindtap="deleteApplyData" data-id="{{data._id}}">删除汇总表</button>
+  </view>
+</view>

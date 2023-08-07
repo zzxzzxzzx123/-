@@ -1,0 +1,57 @@
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>条件筛选
+  </view>
+</view>
+
+<view class="padding bg-white">
+  <view class="cu-form-group" wx:if="{{isSelect == false}}">
+    <view class="title">条件选择</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="picker">
+        {{index?picker[index]:'选择时间'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">按时间段筛选</view>
+    <switch class="red sm" checked="{{isSelect}}" bindchange="changeSelect"></switch>
+  </view>
+  <view wx:if="{{isSelect}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">起始日期</view>
+      <picker mode="date" bindchange='one' end='{{enddate}}'> {{!one ? '请选择起始日期':repTime}}</picker>
+    </view>
+    <view class="cu-form-group margin-top">
+      <view class="title">终止日期</view>
+      <picker mode="date" bindchange='two' end='{{enddate}}'>{{!two ? '请选择终止日期':repTime2}} </picker>
+    </view>
+  </view>
+  <view class="cu-form-group">
+		<view class="title">文件名</view>
+		<input placeholder="导出时文件命名(不带后缀)" value="{{fileName}}" bindinput="inputFileName"></input>
+	</view>
+  <view class="cu-bar btn-group">
+    <button class="cu-btn bg-blue shadow-blur round" bindtap='buttonClick'>导出报表</button>
+  </view>
+
+  <view class="text">注：如若短时间内多次导出，请修改文件名</view>
+</view>
+
+<view class="padding text-center" wx:if="{{fileUrl}}" bindtap='copyFileUrl'>
+  <view class="padding-xl radius shadow bg-white">
+    <text style="color: rgb(16, 158, 240);">{{fileUrl}}</text>
+    <view class="text">注：点击即可复制</view>
+    <view style="text-align: right;font-size: 20rpx;color: #000;">链接生成时间：{{exportDateTime}}</view>
+  </view>
+</view>
+<view class="maxview">
+  <view class="title">汇总表统计</view>
+  <view class="charts-box">
+    <qiun-wx-ucharts type="pie" chartData="{{chartData}}" />
+  </view>
+  <view class="title">汇总表类型统计</view>
+  <view class="charts-box">
+    <qiun-wx-ucharts type="column" chartData="{{chartData2}}" />
+  </view>
+</view>

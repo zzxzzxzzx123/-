@@ -1,0 +1,38 @@
+@import '../../index/card.wxss';
+page{
+	background-color: #F0F0F0;
+}
+#maxView{
+	background-color: #fff;
+	padding: 30rpx;
+}
+/* 提交按钮 */
+.button{
+	width: 80%;
+	color: #fff;
+	background-color: #007aff;
+	text-align: center;
+	height: 90rpx;
+	line-height: 90rpx;
+	border-radius: 20rpx;
+	margin-top: 70rpx;
+	margin-bottom:50rpx;
+	border:none;
+}
+.button:active{
+  width: 80%;
+	color: #fff;
+	background-color: #005abb;
+	text-align: center;
+	height: 90rpx;
+	line-height: 90rpx;
+	border-radius: 20rpx;
+	margin-top: 70rpx;
+	margin-bottom:50rpx;
+	border:none;
+}
+.text{
+  text-align: center;
+  font-size: 25rpx;
+  color: rgb(126, 126, 126);
+}

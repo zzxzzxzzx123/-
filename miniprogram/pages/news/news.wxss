@@ -1,0 +1,51 @@
+/* pages/schoolinfo/schoolinfo.wxss */
+@import '../../colorui/main.wxss';
+@import '../../colorui/icon.wxss';
+.contact_box {
+  z-index: 9;
+  position: fixed;
+  bottom: 100rpx;
+  right: 40rpx;
+  display: flex;
+  width: 100rpx;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20rpx 0;
+  border-radius: 50rpx 50rpx 20rpx 20rpx;
+  /* box-shadow: 0 0 30rpx #f0f0f0 !important; */
+}
+
+.contact_box image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.contact_box view {
+  font-size: 26rpx;
+  letter-spacing: 2rpx;
+  margin-top: 10rpx;
+}
+/* 底部 我也是有底线的 */
+.fg1{
+  width: 80rpx;
+  border-bottom: 1px solid #aaaaaa;
+  vertical-align: middle;
+}
+.fg2{
+  margin: 0rpx 30rpx;
+  font-size: 26rpx;
+  color: #888;
+  vertical-align: middle;
+}
+.panel-center{
+  display: flex;
+  justify-content: center;
+}
+.panel-center{
+  display: flex;
+  justify-content: center;
+}
+.ma-t30{
+  margin-top: 30rpx
+}

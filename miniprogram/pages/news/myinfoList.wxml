@@ -1,0 +1,47 @@
+<wxs src="../../utils/common.wxs" module="morejs" />
+<view class="cu-bar bg-white solid-bottom shadows">
+  <view class='action'>
+    <text class='cuIcon-titles text-green '></text>资讯列表
+  </view>
+</view>
+<view class="box">
+ 
+  <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{groupList}}" wx:key='index' bindtap="tabSelect" data-title="{{item.title}}" data-id='{{index}}'>
+  {{item.title}}
+  </view>
+</scroll-view>
+</view>
+
+<view class="cu-card case"  wx:for="{{infoList}}" wx:key='index'>
+  <view class="cu-item  shadows" data-infoid="{{item._id}}"bindtap="goToeditInfo">
+    <view class="image">
+      <image src="{{item.img[0]?item.img[0]:'https://iconfont.alicdn.com/t/99b95066-f227-4a17-90b1-86fc6e595fd7.png'}}" style='height:340rpx' mode="aspectFill"></image>
+      <view class="cu-tag bg-blue">{{item.label}}</view>
+      <view class="cu-bar bg-shadeBottom">
+        <text class="text-cut">{{item.detail}}</text>
+      </view>
+    </view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <image class="cu-avatar round lg" src='{{item.avatarurl}}'></image>
+        <view class="content flex-sub">
+          <view class="text-grey">{{item.title}}</view>
+          <view class="text-gray text-sm flex justify-between">
+            {{item.nickname}} - {{morejs.timelog(item._createTime)}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="panel-center item-center ma-t30" style='padding:30rpx;padding-top:0 '>
+  <view class='fg1'></view>
+  <view class='fg2'>我是有底线的哦</view>
+  <view class='fg1'></view>
+</view>
+
+
+
+
+

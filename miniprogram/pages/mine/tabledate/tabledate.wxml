@@ -1,0 +1,21 @@
+<view class="page">
+<block wx:for="{{List}}">
+<!-- 上面 -->
+<view class="one">
+<view class="left">*负责人： {{item.director}}</view>
+<view class="right">序号： {{item.Serial}}</view>
+
+<!-- 中间 -->
+
+  <view>地区：{{item.area}}</view>
+  <view>行业：{{item.industry}}</view>
+  <view>编码：{{item.code}}</view>
+
+<!-- 下面 -->
+
+  <view class="left">客户：{{item.custom}}</view>
+  <view class="right">备注：{{item.notes}}</view>
+
+ </view>
+</block>
+</view>

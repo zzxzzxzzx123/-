@@ -1,0 +1,126 @@
+<!-- 顶部栏 -->
+<view class="ns"> 个人中心</view>
+<!-- 头部部分 -->
+<view class="header">
+  <image class="bg_ware" src="https://ftp.bmp.ovh/imgs/2019/12/83388a096d28fab7.gif"></image>
+  <view class="header-top">
+    <view class="info">
+    <view class="touxiang">
+      <image  class="touxiang mine_img" src="{{logo}}"></image>
+    </view>
+   
+    <view class="name">
+      <view>{{realName}}</view>
+    </view>
+    <!-- <view wx:else>
+      <button wx:if="{{canIUse&&!login}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
+      <view wx:else>请升级微信版本</view>
+    </view> -->
+    <view class="header-top-biaoqian">
+      <text wx:if="{{userroot}}">超级管理员</text>
+      <text wx:else>普通用户</text>
+    </view>
+  </view>
+  </view>
+  
+</view>
+
+<!-- 列表部分 -->
+<view class="centerbox">
+  <view class='option'>
+    <view class='service li' bindtap='gotoInfoPage'>
+      <view class='text'>
+        <image class='img' src='/images/d6.png'></image>
+        <text>个人信息</text>
+      </view>
+      <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+	
+	<view class='service li' bindtap='gototabledate'>
+	  <view class='text'>
+	    <image class='img' src='/images/d6.png'></image>
+	    <text>汇总表数据</text>
+	  </view>
+	  <image class='imgs' src='/images/RightArrow.png'></image>
+	</view>
+	
+	
+	
+    <view class='service li' bindtap='gotoMyrepair'>
+      <view class='text'>
+        <image class='img' src='/images/d4.png'></image>
+        <text>我的汇总表</text>
+      </view>
+      <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+   
+    
+  </view>
+
+  <view class='option'  wx:if="{{isAdmin}}">
+    <!-- <view class='cooperation li' bindtap='applyAdmin'>
+      <view class='text'>
+        <image class='img' src='/images/xiaoxi.png'></image>
+        <text>取消自己管理员身份</text>
+      </view>
+      <image class='imgs' src='/images/RightArrow.png'></image>
+    </view> -->
+    <view class='service li' bindtap='toAdmin'>
+        <view class='text'>
+          <image class='img' src='/images/admin_setting.png'></image>
+          <text>管理员核查</text>
+        </view>
+        <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+    <view class='service li' bindtap='toexportEmail'>
+        <view class='text'>
+          <image class='img' src='/images/baobiao.png'></image>
+          <text>导出报表</text>
+        </view>
+        <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+  </view>
+  <view class='option'>
+    <view class='cooperation li' bindtap='applyAdmin'>
+      <view class='text'>
+        <image class='img' src='/images/xiaoxi.png'></image>
+        <text>申请管理员</text>
+      </view>
+      <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+  </view>
+
+  <view class='option'>
+    <view class='service li' bindtap='makePhone'>
+      <view class='text'>
+        <image class='img' src='/images/kf.png'></image>
+        <text>电话客服</text>
+      </view>
+      <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+    
+    <button class="filter-btn" open-type="contact">
+      <view class='service li'>
+        <view class='text'>
+          <image class='img' src='/images/wxdl.png'></image>
+          <text class="btn-text">微信客服</text>
+        </view>
+        <image class='imgs' src='/images/RightArrow.png'></image>
+      </view>
+    </button>
+
+    <view class='service li' bindtap='gotoAboutPage'>
+      <view class='text'>
+        <image class='img' src='/images/about.png'></image>
+        <text>关于我们</text>
+      </view>
+      <image class='imgs' src='/images/RightArrow.png'></image>
+    </view>
+  </view>
+</view>
+
+<view>
+  <view class="botton" style="text-align:center;color:rgb(139, 138, 138);margin-top:20rpx">
+    <view class='pa-30 fo-30 fo-g' style='text-align: center' bindtap="autoUpdate" >当前版本：{{needUpdate}}</view>
+  </view>
+</view>

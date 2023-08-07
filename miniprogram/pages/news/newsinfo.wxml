@@ -1,0 +1,98 @@
+<wxs src="../../utils/common.wxs" module="morejs" />
+<swiper wx:if='{{info.img.length > 0}}' class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true"
+  interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff"
+  style="width: 750rpx; height: 429rpx; display: block; box-sizing: border-box">
+  <swiper-item wx:for="{{info.img}}" wx:key class="{{cardCur==index?'cur':''}}">
+    <view class="swiper-item"   data-url='{{item}}' bindtap='showModal'>
+      <image src="{{item}}" mode="aspectFill"></image>
+    </view>
+  </swiper-item>
+</swiper>
+<view class="cu-card dynamic " style="margin-bottom:100rpx">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <!-- <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view> -->
+        <image class="cu-avatar round lg" src="{{info.avatarurl}}"></image>
+        <view class="content flex-sub">
+          <view>{{info.nickname}} <view
+              class="cu-tag  {{info.gender==0?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+          </view>
+          <view class="text-gray text-sm flex justify-between">
+            {{morejs.format(info._createTime)}}
+          </view>
+        </view>
+        <view class="cu-capsule radius">
+          <view class="cu-tag bg-{{info.gender== 0?'red':'blue'}} " style="position: relative; left: -26rpx; top: 0rpx">
+            <text class="cuIcon-phone"></text>
+          </view>
+          <view class="cu-tag line-{{info.gender== 0?'red':'blue'}} wx:if='{{info.phone}}' " bindtap='makePhoneCall'
+            style="position: relative; left: -26rpx; top: 0rpx">
+            联系Ta
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="text-content">
+      {{info.detail}}
+    </view>
+      <view class="flex justify-between">
+        <view class="cu-bar bg-white ">
+        <view class="action">
+        <text class="cuIcon-title text-orange "></text> 评论留言         
+      </view>
+      </view>
+     
+   
+
+    <view class="text-gray text-sm text-right padding">
+      <text class="cuIcon-attentionfill margin-lr-xs"></text> {{info.view}}
+      <text class="cuIcon-messagefill margin-lr-xs"></text>{{commentInfo.length}} 
+    </view>
+   
+
+      
+   
+
+  </view>
+    <view class="cu-list menu-avatar comment solids-top" wx:for='{{commentInfo}}' wx:key='index'>
+      <view class="cu-item" >
+        <image class="cu-avatar round"
+         src='{{item.avatar_url}}'></image>
+        <view class="content">
+          <view class="text-grey">{{item.nick_name}}</view>
+          <view class="text-gray text-content text-df">
+            <view class="text-gray text-df">发表于 {{morejs.timelog(item._createTime)}}    
+              <text wx:if='{{userinfo.openid == item._openid || userinfo.openid == info._openid }}' bindtap='deleteComment' data-comment_id= '{{item._id}}'> <text  class="cuIcon-deletefill text-red"  ></text>删除 </text> 
+              </view>
+          </view>
+          <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+            <view class="flex">
+              <view class="flex-sub">{{item.comment}}</view>
+            </view>
+          </view>
+        </view>
+     
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+  <view class="action">
+    <text class="cuIcon-sound text-grey"></text>
+  </view>
+  <input class="solid-bottom" bindfocus="InputFocus" bindblur="InputBlur" placeholder="请输入评论内容"
+    adjust-position="{{false}}" focus="{{false}}" maxlength="50"  value='{{comment}}' bindinput="inputComment" cursor-spacing="10"></input>
+  <view class="action">
+    <text class="cuIcon-emojifill text-grey"></text>
+  </view>
+  <button class="cu-btn bg-green shadow" bindtap='postComment'>发送</button>
+</view>
+
+
+<view class="cu-modal {{modalName=='Image'?'show':''}}" catchtap="hideModal">
+  <view class="cu-dialog">
+    <image class="bg-img" mode='widthFix' src='{{url}}' ></image>
+    </view>  
+  </view>

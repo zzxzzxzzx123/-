@@ -1,0 +1,75 @@
+<!-- 通告栏 -->
+<view class="notice-container">
+  <van-notice-bar left-icon="https://img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png" text="请大家如实填写信息,方便维修人员对应进行维修。" speed="40" />
+</view>
+
+<!-- 申报项 -->
+<view class="declare-input">
+  <view class="userLogo">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class="decare-input-item">
+    <text class="itemtext">申报人(必填)：</text>
+    <input type="text" class="iteminput" maxlength="8" placeholder="请输入姓名" bindinput="setName" value="{{realName}}" />
+  </view>
+  <view class="line"></view>
+
+  <view class="decare-input-item">
+    <text class="itemtext2">地点(选填)：</text>
+    <view>
+      <input class="iteminput" bindinput="setAddress" placeholder="请输入地点" value="{{realaddress}}"></input>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="decare-input-item">
+    <text class="itemtext">联系电话(必填)：</text>
+    <input class="iteminput" type="number" bindinput="setPhone" disabled="disabled" maxlength="11" placeholder="请输入手机号" value="{{realPhone}}"></input>
+  </view>
+  <view class="line"></view>
+  <view class="decare-input-item">
+    <text class="itemtext">电子邮箱(必填)：</text>
+    <input class="iteminput" type="number" bindinput="setEmail" disabled="disabled" placeholder="请输入电子邮箱" value="{{realEmail}}"></input>
+  </view>
+  <view class="line"></view>
+
+  <view class="decare-input-item">
+    <text class="itemtext2">申报描述(选填)：</text>
+    <textarea class="textarea" placeholder="请说明情况、出现状况，如何导致等.." placeholder-style="color:#ccc;font-size:14px;" type="string" maxlength="50" bindinput="setDesc" value="{{desc}}"></textarea>
+  </view>
+
+  <view class="cu-bar bg-white">
+    <text class="itemtext">上传图片(选填)：</text>
+    <view class="action">
+      {{img.length}}/4
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{img}}" wx:key="index">
+        <image src='{{img[index]}}' data-target="Image" catchtap="showModal" data-url='{{img[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="uploadImage" wx:if="{{img.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+  <van-radio-group value="{{ level }}" bind:change="selectLevel">
+    <van-cell-group border="{{false}}">
+      <text class="itemtext2">申报处理类型：</text>
+      <van-cell title="普通申报" clickable data-level="普通申报" bind:click="clickLevel" border="{{false}}">
+        <van-radio slot="right-icon" name="普通申报" />
+      </van-cell>
+      <van-cell title="紧急申报" clickable data-level="紧急申报" bind:click="clickLevel" border="{{false}}">
+        <van-radio slot="right-icon" name="紧急申报" />
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+  <!-- 提交申报 -->
+  <view class="apply-btn">
+    <button type="primary" bindtap="inApplyData" data-id="{{data._id}}">确定修改</button>
+  </view>
+</view>

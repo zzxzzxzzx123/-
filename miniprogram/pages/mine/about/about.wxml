@@ -1,0 +1,32 @@
+<view class="header">
+    <view class="logo_view"> 
+     <image src="https://677a-gzzw-1g7ti6il9d8c706e-1319528067.tcb.qcloud.la/img/%E5%8D%93%E4%B8%BAlogo.jpg?sign=b9067c3789adae8c419f5f2096c5f500&t=1689821129" class="topimage"></image>
+    </view>
+    <view class="font-text">{{configData.systemname}} {{configData.version}}</view>
+</view>
+
+<view class="center">
+  {{configData.aboutText}}
+</view>
+
+<view class="center team">
+  <view class="team_title">开发团队</view>
+  <view>开发者：广州卓为信息科技技术部</view>
+  <view bindtap="callApplyWechat" style="color: rgb(2, 108, 207);">微信:{{configData.kefu_wechat}}</view>
+  <view bindtap="makePhone"  style="color: rgb(2, 108, 207);">联系方式：{{configData.kefu_phone}}</view>
+ <!-- <view class="team_title">特别鸣谢</view>
+  <view>test</view>
+  <view>test）</view> -->
+  <!-- <button bindtap="sendDuanxin">调用</button> -->
+</view>
+
+<view class="bottom">
+  <text>
+    卓为官网
+    http://www.zhuow.net/
+  </text>
+
+  <!--二维码<image src="/images/cxyax.png" class="ma"></image>-->
+</view>
+
+<!-- <button bindtap="send">发送</button> -->

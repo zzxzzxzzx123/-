@@ -1,0 +1,62 @@
+{
+  "pages": [
+	  
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/admin/admin",
+    "pages/mine/exportExcel/exportExcel",
+    "pages/publish/publish",
+    "pages/updatepublish/updatepublish",
+    "pages/overlist/overlist",
+    "pages/mine/info/info",
+    "pages/mine/mine",
+    "pages/mine/about/about",
+    "pages/login/login",
+    "pages/mine/myrepair/myrepair",
+    "pages/mine/applyAdmin/applyAdmin",
+    "pages/sendContact/sendContact",
+    "pages/news/news",
+    "pages/news/newsinfo",
+    "pages/news/infoDetail",
+    "pages/news/myinfoList",
+    "pages/mine/tabledate/tabledate"
+  ],
+  "requiredPrivateInfos": [
+    "chooseAddress",
+    "chooseLocation",
+    "getLocation"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "卓为科技项目跟进小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#6887e1",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "images/t2.png",
+        "iconPath": "images/t1.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/hot-active.png",
+        "iconPath": "images/hot.png",
+        "pagePath": "pages/news/news",
+        "text": "资讯"
+      },
+      {
+        "selectedIconPath": "images/t6.png",
+        "iconPath": "images/t5.png",
+        "pagePath": "pages/mine/mine",
+        "text": "个人中心"
+      }
+    ]
+  }
+}

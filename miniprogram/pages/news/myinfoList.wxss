@@ -1,0 +1,27 @@
+/* pages/schoolinfo/myinfo_list.wxss */
+/* pages/schoolinfo/info_edit.wxss */
+@import '../../colorui/main.wxss';
+@import '../../colorui/icon.wxss';
+/* 底部 我也是有底线的 */
+.fg1{
+  width: 80rpx;
+  border-bottom: 1px solid #aaaaaa;
+  vertical-align: middle;
+}
+.fg2{
+  margin: 0rpx 30rpx;
+  font-size: 26rpx;
+  color: #888;
+  vertical-align: middle;
+}
+.panel-center{
+  display: flex;
+  justify-content: center;
+}
+.panel-center{
+  display: flex;
+  justify-content: center;
+}
+.ma-t30{
+  margin-top: 30rpx
+}

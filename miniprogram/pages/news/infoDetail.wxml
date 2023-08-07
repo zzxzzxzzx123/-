@@ -1,0 +1,87 @@
+<view class="cu-card dynamic ">
+	<view class="cu-item shadow">
+		<view class="cu-list menu-avatar">
+			<view class="cu-item">
+				<view class="cu-avatar  lg"
+					style="background-image:url(https://s1.ax1x.com/2022/08/15/vdUQk8.jpg);">
+				</view>
+				<view class="content flex-sub">
+					<view class="solid-bottom  padding">
+						<text class="text-black text-xl text-bold">{{area.name}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="cu-bar bg-white solid-bottom   shadows">
+				<view class='action'>
+					<text class='cuIcon-titles text-green '></text> 发布资讯
+				</view>
+			</view>
+			<view class="cu-form-group ">
+				<view class="title">选择分类</view>
+				<picker bindchange="PickerChange" value="{{label}}" range="{{groupList}}">
+					<view class="picker flex  justify-start ">
+						{{label?label:'选择标题分类'}}
+					</view>
+				</picker>
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">发布标题</view>
+				<input placeholder="请输入发布的标题(10个字之内)" bindinput="inputTitle" value="{{title}}"></input>
+			</view>
+
+			<view class="cu-form-group align-start">
+				<view class="title">内容详情</view>
+				<textarea maxlength="-1" bindinput="inputDetail" value="{{detail}}" placeholder="输入您想发布的信息"></textarea>
+			</view>
+
+			<view class="cu-bar bg-white">
+				<view class="action">
+					上传图片
+				</view>
+				<view class="action">
+					{{img.length}}/4
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="grid col-4 grid-square flex-sub">
+					<view class="bg-img" wx:for="{{img}}" wx:key="index" >
+						<image src='{{img[index]}}'  data-target="Image" catchtap="showModal"  data-url='{{img[index]}}' mode='aspectFill'></image>
+						<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+							<text class="cuIcon-close"></text>
+						</view>
+					</view>
+					<view class="solids" bindtap="uploadImage" wx:if="{{img.length<4}}">
+						<text class="cuIcon-cameraadd"></text>
+					</view>
+				</view>
+			</view>
+
+			<view class="cu-form-group margin-top">
+				<view class="title">不公开身份</view>
+				<switch class="orange radius sm" bindchange="anonyPublish" checked="{{is_anony}}" ></switch>
+			</view>
+			
+			<view class="cu-form-group">
+				<view class="title">公开联系方式</view>
+				<switch class="orange radius sm" bindchange="publicContact" checked='{{is_open}}'></switch>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">协议签署</view>
+				<text style="color: rgb(0, 89, 255);" bindtap="agreement">《网络信息内容生态治理规定》</text>
+				<switch class="orange radius sm" bindchange="agreementFlag" checked="{{agreementFlag}}"></switch>
+			</view>
+
+			<view class="padding flex flex-direction">
+				<button class="cu-btn bg-green lg" disabled="{{is_click}}" bindtap="toSubmit">{{info_id?'修改信息':'立即发布'}}</button>
+				<button class="cu-btn bg-red lg  margin-top"  wx:if="{{info_id}}" bindtap="deleteInfo">删除信息</button>
+			</view>
+	<view class="cu-modal {{modalName=='Image'?'show':''}}" catchtap="hideModal">
+  <view class="cu-dialog">
+    <image class="bg-img" mode='widthFix' src='{{url}}'></image>
+    </view>  
+  </view>
+		</view>
+
+	</view>
+</view>

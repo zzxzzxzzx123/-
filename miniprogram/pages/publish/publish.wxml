@@ -1,0 +1,197 @@
+<!-- 通告栏 -->
+<view class="notice-container">
+	<van-notice-bar left-icon="https://677a-gzzw-1g7ti6il9d8c706e-1319528067.tcb.qcloud.la/img/%E5%96%87%E5%8F%AD.png?sign=f6c36f1e053714d52146345d02d0b743&t=1689832681" text="请员工们准确填写汇总表,方便管理员对应进行审核。" speed="40" />
+</view>
+
+<!-- 申报项 -->
+<view class="declare-input">
+  <view class="back" wx:if="{{num != 0}}" bindtap="backSteps">
+      上一步
+  </view>
+	<view class="userLogo">
+		<image src="{{logo}}" style=" width: 150rpx;height: 150rpx;"></image>
+	</view>
+  <!-- 步骤条 -->
+  <view class="bg-white padding">
+  <view class="cu-steps">
+    <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+      <text class="num {{index==2?'success':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+    </view>
+  </view>
+</view>
+<!-- 第一步 -->
+<view wx:if="{{num == 0}}">
+  <view class="decare-input-item">
+		<text class="itemtext">申报人：</text>
+		<input type="text" class="iteminput" maxlength="8" placeholder="请输入姓名" bindinput="setName" value="{{realName}}" />
+	</view>
+	<view class="line"></view>
+  <view class="decare-input-item">
+		<text class="itemtext">联系电话：</text>
+		<input class="iteminput" type="number" disabled="disabled" bindinput="setPhone" maxlength="11" placeholder="请输入手机号" value="{{realPhone}}"></input>
+	</view>
+	<view class="line"></view>
+  <!-- <view class="decare-input-item">
+		<text class="itemtext2">故障地点：</text>
+    <view>
+      <text class="cuIcon-locationfill text-orange weizhi" bindtap="chooseAddressData"></text>
+      <input class="iteminput"  bindinput="setAddress" placeholder="请输入故障地点" value="{{realaddress}}" style="width: 90%;"></input>
+    </view>
+	</view>        
+	<view class="line"></view> -->
+	<!-->   需要修改上门地址改为选填      <-->
+<!--  <view class="decare-input-item">                 
+      <text class="itemtext2">上门地址：<text style="color: red;">*</text></text>
+      <view  bindtap="chooseAddressData">
+        <text class="cuIcon-locationfill text-orange weizhi"></text>
+        <input class="iteminput" disabled="disabled" placeholder="请选择上门地点" value="{{realaddress}}" style="width: 90%;"></input>
+      </view>
+    </view> -->
+	<view class="line"></view>
+  <view class="decare-input-item">
+      <text class="itemtext">联系地址：</text>
+      <input class="iteminput" bindinput="setAddress" placeholder="补充联系地址（选填）" value="{{detail_postion}}"></input>
+    </view>
+	<view class="line"></view>
+
+  <view class="apply-btn">
+    <button type="primary" bindtap="numSteps">下一步</button>
+  </view>
+</view>
+
+
+<!-- 第二步 -->
+<view wx:if="{{num == 1}}">
+  <!-- <view class="decare-input-item">
+		<text class="itemtext">客户</text>
+		<input type="text" class="iteminput" maxlength="8" placeholder="请输入客户信息" bindinput="setName" value="{{realName}}" />
+	</view>
+	<view class="line"></view>
+  <view class="decare-input-item">
+		<text class="itemtext">负责人</text>
+		<input class="iteminput" type="number" disabled="disabled" bindinput="setPhone" maxlength="11" placeholder="请输入负责人信息" value="{{realPhone}}"></input>
+	</view>
+	<view class="line"></view>
+  原来版本的第二步
+	<view class="line"></view>
+  <view class="decare-input-item">
+      <text class="itemtext">备注</text>
+      <input class="iteminput" bindinput="setAddress" placeholder="补充备注信息（选填）" value="{{detail_postion}}"></input>
+    </view>
+	<view class="line"></view> -->
+	<form bindsubmit="bindSubmit">  
+	  <view class="form_border">
+	    <label>序号:</label>
+	    <input name="Serial" auto-focus placeholder="  请填写序号" />
+	  </view>
+	  <view class="form_border">
+	    <label>地区:</label>
+	    <input name="area"  placeholder="  请填写地区" />
+	  </view>
+	  <view class="form_border">
+	    <label>行业:</label>
+	    <input name="industry"  placeholder="  请填写行业" />
+	  </view>
+	  <view class="form_border">
+	    <label>编码:</label>
+	    <input name="code"  placeholder="  请填写编码" />
+	  </view>
+	  <view class="form_border">
+	    <label>客户:</label>
+	    <input name="custom"  placeholder="  请填写客户" />
+	  </view>
+	  <view class="form_border">
+	    <label>负责人:</label>
+	    <input name="director"  placeholder="  请填写负责人" />
+	  </view>
+	  <view class="form_border">
+	    <label>备注:</label>
+	    <input name="notes" placeholder="  请填写备注" />
+	  </view>
+	 
+	 <button hover-class="hover-button" class="button" form-type="submit">提交汇总表</button>
+	  <button hover-class="hover-button" class="button" form-type="reset" style="margin-top: 10rpx;">重置汇总表</button>
+	 
+	</form>
+
+  <view class="apply-btn">
+    <button type="primary" bindtap="numSteps">下一步</button>
+  </view>
+</view>
+
+
+
+	
+
+
+
+<!-- 第三步 -->
+<view wx:if="{{num == 2}}">
+  <view class="decare-input-item">
+		<text class="itemtext2">申报描述：</text>
+		<textarea class="textarea" value="{{desc}}" placeholder="请说明要申请的情况、出现状况，如何导致等.." placeholder-style="color:#ccc;font-size:14px;" type="string" maxlength="50" bindinput="setDesc"></textarea>
+	</view>
+	
+	<button bindtap="chooseExcel">上传xlsx文件</button>
+	
+	
+	
+	
+	
+<!-->尝试是否可以上传excel<-->
+  <view class="cu-bar bg-white">
+  	<text class="itemtext">上传图片：</text>   
+				<view class="action">
+					{{img.length}}/4
+				</view>
+			</view>
+			
+			<view class="cu-form-group">
+				<view class="grid col-4 grid-square flex-sub">
+					<view class="bg-img" wx:for="{{img}}" wx:key="index" >
+						<image src='{{img[index]}}'  data-target="Image" catchtap="showModal"  data-url='{{img[index]}}' mode='aspectFill'></image>
+						<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+							<text class="cuIcon-close"></text>
+						</view>
+					</view>
+					<view class="solids" bindtap="uploadImage" wx:if="{{img.length<4}}">
+						<text class="cuIcon-cameraadd"></text>
+					</view>
+				</view>
+			</view>
+
+    <view class="apply-btn">
+      <button type="primary" bindtap="numSteps">下一步</button>
+    </view>
+</view>
+	
+	<view wx:if="{{num == 3}}">
+
+    <view class="decare-input-item">
+		<text class="itemtext2">邮箱（汇总提醒）：</text>
+      <view>
+        <input class="iteminput"  bindinput="setEmail" placeholder="请输入邮箱" value="{{realemail}}"></input>
+      </view>
+	  </view>
+  <view class="line"></view>
+
+    <van-radio-group value="{{ level }}" bind:change="selectLevel">
+		<van-cell-group border="{{false}}">
+    	<text class="itemtext2">汇总表处理类型：</text>
+			<van-cell title="普通申请" clickable data-level="普通申请" bind:click="clickLevel" border="{{false}}">
+				<van-radio slot="right-icon" name="普通申请" />
+			</van-cell>
+			<van-cell title="紧急申请" clickable data-level="紧急申请" bind:click="clickLevel" border="{{false}}">
+				<van-radio slot="right-icon" name="紧急申请" />
+			</van-cell>
+      <!-- <van-cell title="停用" clickable data-level="停用" bind:click="clickLevel" border="{{false}}">
+				<van-radio slot="right-icon" name="停用" />
+			</van-cell> -->
+		</van-cell-group>
+	</van-radio-group>
+    	<!-- 提交申报 -->
+      <view class="apply-btn">
+        <button type="primary" bindtap="inApplyData">提交</button>
+      </view>
+  </view>
+</view>

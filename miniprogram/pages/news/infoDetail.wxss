@@ -1,0 +1,3 @@
+/* pages/schoolinfo/info_edit.wxss */
+@import '../../colorui/main.wxss';
+@import '../../colorui/icon.wxss';

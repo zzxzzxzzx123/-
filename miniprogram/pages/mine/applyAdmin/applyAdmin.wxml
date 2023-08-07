@@ -1,0 +1,69 @@
+<view id="maxView" wx:if="{{adminList.length <= 0}}">
+  <form action="">
+    <view class="cu-form-group margin-top">
+      <view class="title">Openid：</view>
+      <input type="text" class="name input" disabled="disabled" value="{{openid}}" bindtap="stopset" placeholder="" />
+    </view>
+    <view class="cu-form-group">
+      <view class="title">手机号码:</view>
+      <input type="phone" class="phone input" value="{{phone}}" disabled="disabled" maxlength="11" bindtap="stopset" placeholder="用于联系您" />
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-blue">
+          +86
+        </view>
+        <view class="cu-tag line-blue">
+          中国大陆
+        </view>
+      </view>
+    </view>
+    <view class="cu-form-group margin-top">
+      <view class="title">您的邮箱:</view>
+      <input type="email" class="name input" bindinput="setEmail" placeholder="用于收到申报提醒" />
+    </view>
+    <button class="button" bindtap="sendApply">提交申请</button>
+    <view class="text">注：如果在这个页面说明没有通过</view>
+  </form>
+</view>
+
+<view id="maxView" wx:else="{{adminList.length > 0}}">
+  
+  <view class="cu-bar justify-center bg-white">
+    <view class="action sub-title">
+      <text class="text-xl text-bold text-green">审核记录</text>
+      <text class="bg-green" style="width:2rem"></text>
+      <!-- last-child选择器-->
+    </view>
+  </view>
+  <view class="cu-item" wx:for="{{adminList}}">
+    <form action="">
+      <view class="cu-form-group margin-top">
+        <view class="title">申请昵称：</view>
+        <input disabled="disabled" value="{{item.name}}"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">申请手机号：</view>
+        <input disabled="disabled" value="{{item.phone}}"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">申请邮箱：</view>
+        <input disabled="disabled" value="{{item.email}}"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">权限：</view>
+        <input disabled="disabled" value="{{item.role}}"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">当前状态：</view>
+        <input disabled="disabled" value="{{item.using == true ? '已通过':'审核中'}}"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">申请时间：</view>
+        <input disabled="disabled" value="{{item.applyTime}}"></input>
+      </view>
+    </form>
+    <button class="button" bindtap="deleteApply">{{item.using == false ? '取消申请':'退出管理员身份'}}</button>
+  </view>
+</view>
+
+
+

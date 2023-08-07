@@ -1,0 +1,61 @@
+<!-- <view class="header-box">
+	<van-picker columns="{{ floorList }}" bind:change="selectFloor" visible-item-count="3" />
+
+</view> -->
+<view class="header-tab">
+  <ye-tab tab-list="{{tabList}}" font-size="32rpx" lrPadding="40rpx" bind:select="selectStatus"></ye-tab>
+</view>
+<block wx:for="{{applyData}}" wx:key="applyData">
+  <view class="card-item">
+    <view class="item-content border-bottom">
+      <view class="left-box">
+        <image src="{{item.userlogo}}" mode="aspectFill"></image>
+      </view>
+      <view class="right-box">
+        <view class="floor">{{item.name}}的汇总表
+          <view class="level-tag" style="background-color: {{ item.level === '普通申报' ? '#07c160' : '#ee0a24'}}">
+            {{item.level}}</view>
+        </view>
+        <text class="date">{{item.createTime}}</text>
+        <text class="desc">{{item.desc}}</text>
+        <view class=" margin-left grid col-4 grid-square flex-sub">
+          <view class="bg-img" wx:for="{{item.imgs}}" wx:key="index">
+            <image src='{{item}}' data-target="Image" catchtap="showModal" data-url='{{img[index]}}' mode='aspectFill'>
+            </image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="item-footer">
+      <text data-id="{{item._id}}" bindtap="deleteApplyData" style="border: 1px solid red;padding:5rpx 10rpx 5rpx 10rpx;border-radius: 15rpx;color:red;">删除汇总表</text>
+      <text data-id="{{item._id}}"  data-index="{{index}}" bindtap="jiedanApplyData" wx:if="{{item.status === '未处理'}}" style="border: 1px solid rgb(31, 134, 0);padding:5rpx 10rpx 5rpx 10rpx;border-radius: 15rpx;color:rgb(31, 134, 0);">接单</text>
+      <text class="confirm-text-btn" data-id="{{item._id}}" data-index="{{index}}" wx:if="{{item.status === '处理中'}}" bindtap="showModalView" data-target="DialogModal1" style="color: rgb(31, 134, 0);border: 1px solid rgb(31, 134, 0);padding:5rpx 10rpx 5rpx 10rpx;border-radius: 15rpx;">处理完成</text>
+      <text data-id="{{item._id}}" bindtap="navDetail" style="border: 1px solid #1989FA;padding:5rpx 10rpx 5rpx 10rpx;border-radius: 15rpx;">查看详情</text>
+    </view>
+
+    <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">申报反馈</view>
+          <view class="action" bindtap="hideModal">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl">
+          <view style="margin-bottom: 20rpx;font-weight: bold;">
+            <text>汇总表：</text>
+            <text style="color: rgb(0, 102, 255);">{{nowOrderData.name}}的汇总表</text>
+          </view>
+          <textarea name="adminTallText" id="" cols="30" rows="10" bindinput="setadminTallText" placeholder="简单描述一下修改详情(用户不可见，仅供存档使用)" class="weixiuText" ></textarea>
+        </view>
+        <view class="cu-bar bg-white justify-end">
+          <view class="action">
+            <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+            <button class="cu-btn bg-green margin-left" bindtap="updateApplyStatus">确定</button>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

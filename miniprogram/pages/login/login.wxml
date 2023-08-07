@@ -1,0 +1,26 @@
+<view class='header'>
+  <image class='round' src='/images/logo.png' wx:if='{{show_phone}}'></image>
+  <image class='round' src='{{avatarUrl}}' hidden="{{show_phone}}"></image>
+</view>
+
+<view class='padding content'>
+  <view class="text-blod text-xl">获得你的手机号和头像以及昵称信息</view>
+  <text class="text-blod text-xl">请授权登录</text>
+</view>
+
+<view class="padding flex flex-direction">
+  <button class="cu-btn bg-blue margin-tb-sm lg" openType="getPhoneNumber" wx:if='{{show_phone}}' bindgetphonenumber="getPhoneNumber">授权获取手机号</button>
+  <button class="cu-btn bg-blue margin-tb-sm lg" hidden="{{show_phone}}" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">授权获取头像</button>
+  <!-- <button class="cu-btn bg-blue margin-tb-sm lg"  hidden="{{show_phone}}" bindtap="getUserProfile">授权获取头像</button> -->
+ <button class="cu-btn  margin-tb-sm lg" bindtap="backToindex">取消</button>
+
+</view>
+<!--此方法只需要在wxml里添加下面代码即可，无需用 bindtap关联函数-->
+
+
+
+
+
+<view style="position:fixed; bottom:10px; left:0px;text-align:center;width: 100%;">
+  <text bindtap='agree' class="  cuIcon-roundcheckfill text-{{is_agree?'green':'grey'}}"></text><text bindtap="showLaw" style="margin-left:10rpx">同意<text class="text-blue ">《用户条款》</text>和<text class="text-blue">《隐私策略》</text></text>
+</view>

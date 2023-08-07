@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "qiun-wx-ucharts": "/components/qiun-wx-ucharts/src/index"
+  }
+
+}
